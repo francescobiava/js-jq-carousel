@@ -1,5 +1,14 @@
+var imgArray = ['<img src="assets/img/st-1.jpg">', '<img src="assets/img/st-2.jpg">', '<img src="assets/img/st-3.jpg">', '<img src="assets/img/st-4.jpg">'];
+
 $(document).ready(function () {
   
+  // eseguo funzione per inserire le immagini
+  insertImg(imgArray);
+
+  // assegno le classi first, last e active alle immagini inserite
+  $('.carousel .images img:first-child').addClass('first active');
+  $('.carousel .images img:last-child').addClass('last');
+
   // eseguo funzioni per slide al click
   $('.next').click(nextSlide);
   $('.prev').click(prevSlide);
@@ -72,4 +81,11 @@ function leftArrow() {
       prevSlide();
     }
   });
+}
+
+// funzione per inserire le immagini in pagina
+function insertImg(array) {
+  for (var i=0; i<array.length; i++) {
+    $('.carousel .images').append(array[i]);
+  }
 }
