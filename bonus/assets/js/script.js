@@ -1,24 +1,26 @@
 $(document).ready(function () {
   
+  // eseguo funzioni per slide al click
   $('.next').click(nextSlide);
   $('.prev').click(prevSlide);
 
-  // click freccia destra
-  $('body').keydown(function(e) {
-    if(e.keyCode == 39) {
-      nextSlide();
-    }
+  // aggiungo classe per verificare se il mouse è nel carousel
+  $('.carousel').on({
+    mouseenter: function() {
+      $(this).addClass('mouse-in');
+    }, mouseleave: function() {
+      $(this).removeClass('mouse-in');
+     }
   });
-  // click freccia sinistra
-  $('body').keydown(function(e) {
-    if (e.keyCode == 37) {
-      prevSlide();
-    }
-  });
+
+  // eseguo funzioni per slide da tastiera
+  leftArrow();
+  rightArrow();
 
 });
 
-// functions
+// FUNCTIONS
+// funzione slide next
 function nextSlide() {
   
   var imgPosition = $('.carousel .images img.active');
@@ -36,6 +38,7 @@ function nextSlide() {
   }
 }
 
+// funzione slide previous
 function prevSlide() {
   
   var imgPosition = $('.carousel .images img.active');
@@ -51,4 +54,22 @@ function prevSlide() {
     imgPosition.prev('img').addClass('active');
     navPosition.prev('i').addClass('active');
   }
+}
+
+// funzione tastiera freccia destra
+function rightArrow() {
+  $('body').keydown(function(e) {
+    if((e.keyCode == 39) && ($('.carousel').hasClass('mouse-in'))){
+      nextSlide();
+    }
+  });
+}
+
+// funzione tastiera freccia sinistra
+function leftArrow() {
+  $('body').keydown(function(e) {
+    if ((e.keyCode == 37) && ($('.carousel').hasClass('mouse-in'))){
+      prevSlide();
+    }
+  });
 }
