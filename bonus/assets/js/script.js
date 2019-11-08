@@ -23,8 +23,7 @@ $(document).ready(function () {
   });
 
   // eseguo funzioni per slide da tastiera
-  leftArrow();
-  rightArrow();
+  keyboard();
 
 });
 
@@ -66,18 +65,12 @@ function prevSlide() {
 }
 
 // funzione tastiera freccia destra
-function rightArrow() {
+function keyboard() {
   $('body').keydown(function(e) {
-    if((e.keyCode == 39) && ($('.carousel').hasClass('mouse-in'))){
+    if ((e.keyCode == 39) && ($('.carousel').hasClass('mouse-in'))) {
       nextSlide();
     }
-  });
-}
-
-// funzione tastiera freccia sinistra
-function leftArrow() {
-  $('body').keydown(function(e) {
-    if ((e.keyCode == 37) && ($('.carousel').hasClass('mouse-in'))){
+    if ((e.keyCode == 37) && ($('.carousel').hasClass('mouse-in'))) {
       prevSlide();
     }
   });
